@@ -23,7 +23,6 @@ const accelerometerDataClass = mongoose.model("accelerometerData", accelerometer
 
 app.post('/accelerometerData', async function(req, res) {
     try {
-        console.log(req.json())
         const accelerometerDataInstance = new accelerometerDataClass({
             xValue: req.query.xValue,
             yValue: req.query.yValue,
