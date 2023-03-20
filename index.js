@@ -30,8 +30,12 @@ app.post('/accelerometerData', async function(req, res) {
 })
 
 app.get('/accelerometerData', async function(req,res) {
-    const accelerometerData = await accelerometerDataClass.find()
-    res.status(201).json(accelerometerData)
+    try {
+        const accelerometerData = await accelerometerDataClass.find()
+        res.status(201).json(accelerometerData)
+    } catch(error) {
+        res.status(500).json(error)
+    }
 })
 
 app.listen(port)
