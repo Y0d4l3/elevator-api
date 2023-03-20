@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
+app.use(bodyParser.json());
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
@@ -23,11 +24,7 @@ const accelerometerDataClass = mongoose.model("accelerometerData", accelerometer
 
 app.post('/accelerometerData', async function(req, res) {
     try {
-        const accelerometerDataInstance = new accelerometerDataClass({
-            xValue: req.query.xValue,
-            yValue: req.query.yValue,
-            zValue: req.query.zValue
-        })
+        const accelerometerDataInstance = new accelerometerDataClass(req.body)
         const saveResult = await accelerometerDataInstance.save()
         res.status(201).json(saveResult)
     } catch(error) {
