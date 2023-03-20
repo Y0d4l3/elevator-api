@@ -9,7 +9,7 @@ if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
   }
   MONGODB_URI
-mongoose.connect(env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI)
     .then(()=>console.log('Connected to database'))
     .catch((error)=>console.error("Error:", error))
 
