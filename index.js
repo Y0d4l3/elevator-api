@@ -1,3 +1,4 @@
+var port = process.env.PORT || 3000;
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
@@ -33,4 +34,4 @@ app.get('/accelerometerData', async function(req,res) {
     res.status(201).json(accelerometerData)
 })
 
-app.listen(3000)
+app.listen(port)
