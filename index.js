@@ -1,8 +1,15 @@
-var port = process.env.PORT || 3000;
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-mongoose.connect('mongodb://localhost/TestDatabase')
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+  }
+  MONGODB_URI
+mongoose.connect(env.MONGODB_URI)
     .then(()=>console.log('Connected to database'))
     .catch((error)=>console.error("Error:", error))
 
@@ -37,5 +44,3 @@ app.get('/accelerometerData', async function(req,res) {
         res.status(500).json(error)
     }
 })
-
-app.listen(port)
