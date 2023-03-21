@@ -15,7 +15,7 @@ exports.createAccelerometerData = (req, res) => {
         strangeEventInstance
           .save()
           .then(() => {
-            sendPushsaferNotification();
+            sendPushsaferNotification(obj.device);
             res.status(201).json({
               accelerometerData: accelerometerDataInstance,
               strangeEvent: strangeEventInstance,

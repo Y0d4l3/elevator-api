@@ -1,6 +1,6 @@
 var push = require("pushsafer-notifications");
 
-const sendPushsaferNotification = () => {
+const sendPushsaferNotification = (device) => {
   var p = new push({
     k: process.env.PUSHSAFER_PRIVATE_KEY,
     debug: false,
@@ -8,7 +8,7 @@ const sendPushsaferNotification = () => {
 
   var msg = {
     m: "Something strang is happening in your Elevator!",
-    t: "Elevator warning",
+    t: "Elevator warning from: " + device,
     s: "8",
     i: "5",
     d: process.env.PUSHSAFER_DEVICE_ID,
