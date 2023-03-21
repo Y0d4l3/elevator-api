@@ -8,7 +8,7 @@ exports.createAccelerometerData = (req, res) => {
   accelerometerDataInstance
     .save()
     .then((obj) => {
-      if (obj.xValue > treshold || obj.yValue > treshold) {
+      if (obj.xValue >= treshold || obj.yValue >= treshold) {
         const strangeEventInstance = new strangeEvent({
           accelerometerData: obj._id,
         });
