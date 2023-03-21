@@ -3,12 +3,12 @@ const strangeEvent = require("../models/strangeEvent");
 const sendPushsaferNotification = require("../middlewares/pushsafer")
 
 exports.createAccelerometerData = (req, res) => {
-  const treshold = process.env.STRANGE_EVENT_TRESHOLD
+  const threshold = process.env.STRANGE_EVENT_THRESHOLD
   const accelerometerDataInstance = new accelerometerData(req.body);
   accelerometerDataInstance
     .save()
     .then((obj) => {
-      if (obj.xValue >= treshold || obj.yValue >= treshold) {
+      if (obj.xValue >= threshold || obj.yValue >= threshold) {
         const strangeEventInstance = new strangeEvent({
           accelerometerData: obj._id,
         });
