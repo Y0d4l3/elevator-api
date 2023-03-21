@@ -1,5 +1,6 @@
 const accelerometerData = require("../models/accelerometerData");
 const strangeEvent = require("../models/strangeEvent");
+const sendPushsaferNotification = require("../middlewares/pushsafer")
 
 exports.createAccelerometerData = (req, res) => {
   const accelerometerDataInstance = new accelerometerData(req.body);
@@ -12,12 +13,13 @@ exports.createAccelerometerData = (req, res) => {
         });
         strangeEventInstance
           .save()
-          .then(() =>
+          .then(() => {
+            sendPushsaferNotification();
             res.status(201).json({
               accelerometerData: accelerometerDataInstance,
               strangeEvent: strangeEventInstance,
-            })
-          )
+            });
+          })
           .catch((err) => res.status(500).json(err));
       } else {
         res.status(201).json(accelerometerDataInstance);
